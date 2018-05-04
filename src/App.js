@@ -1,5 +1,6 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
+import { Route, Link } from 'react-router-dom'
+
 import './App.css'
 import * as BooksAPI from './BooksAPI';
 import Shelf from './Shelf'
@@ -32,9 +33,8 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <Search books={this.state.books} onChangeSelf={this.updateShelf} />
-        ) : (
+        
+        <Route exact path="/" render={({history}) => (
           <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
@@ -47,10 +47,14 @@ class BooksApp extends React.Component {
               
             </div>
             <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+              <Link to="/create">Add a book</Link>
             </div>
           </div>
-        )}
+        )} />
+        
+        <Route path="/create" render={() => (
+          <Search books={this.state.books} onChangeSelf={this.updateShelf} />
+        )}/>
       </div>
     )
   }
