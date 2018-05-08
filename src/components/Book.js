@@ -31,7 +31,7 @@ class Book extends React.Component {
               </div>
             </div>
             <div className="book-title">{book.title}</div>
-            <div className="book-authors">{book.author}</div>
+            <div className="book-authors">{book.authors = book.authors ? book.authors : 'Does not have authors' }</div>
           </div>
         </li>
       
